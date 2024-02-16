@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+public class BankingApplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Bank bank = new Bank();
+
+        boolean isRunning = true;
+        while (isRunning) {
+            System.out.println("Welcome to Simple Banking Application");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: ");
+                    double depositAmount = scanner.nextDouble();
+                    bank.deposit(depositAmount);
+                    break;
+                case 2:
+                    System.out.print("Enter amount to withdraw: ");
+                    double withdrawAmount = scanner.nextDouble();
+                    bank.withdraw(withdrawAmount);
+                    break;
+                case 3:
+                    bank.checkBalance();
+                    break;
+                case 4:
+                    isRunning = false;
+                    System.out.println("Thank you for using Simple Banking Application");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+        scanner.close();
+    }
+}
+
+class Bank {
+    private double balance;
+
+    public Bank() {
+        this.balance = 0.0;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposit of $" + amount + " successful");
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawal of $" + amount + " successful");
+        } else {
+            System.out.println("Insufficient funds or invalid withdrawal amount");
+        }
+    }
+
+    public void checkBalance() {
+        System.out.println("Current balance: $" + balance);
+    }
+}
