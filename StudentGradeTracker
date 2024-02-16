@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class StudentGradeTracker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez le nombre d'étudiants : ");
+        int numStudents = scanner.nextInt();
+
+        // Création des tableaux pour stocker les notes
+        int[] grades = new int[numStudents];
+
+        // Saisie des notes pour chaque étudiant
+        for (int i = 0; i < numStudents; i++) {
+            System.out.print("Entrez la note pour l'étudiant " + (i + 1) + " : ");
+            grades[i] = scanner.nextInt();
+        }
+
+        // Calcul de la moyenne
+        double sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        double average = sum / numStudents;
+
+        // Recherche de la note la plus élevée et la note la plus basse
+        int highest = grades[0];
+        int lowest = grades[0];
+        for (int i = 1; i < numStudents; i++) {
+            if (grades[i] > highest) {
+                highest = grades[i];
+            }
+            if (grades[i] < lowest) {
+                lowest = grades[i];
+            }
+        }
+
+        // Affichage des résultats
+        System.out.println("Moyenne des notes : " + average);
+        System.out.println("Note la plus élevée : " + highest);
+        System.out.println("Note la plus basse : " + lowest);
+
+        // Fermeture du scanner
+        scanner.close();
+    }
+}
