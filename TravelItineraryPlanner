@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class TravelItineraryPlanner {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Travel Itinerary Planner!");
+
+        // Get user input for destination, dates, and preferences
+        System.out.print("Enter your destination: ");
+        String destination = scanner.nextLine();
+
+        System.out.print("Enter your travel dates (e.g., MM/DD/YYYY - MM/DD/YYYY): ");
+        String travelDates = scanner.nextLine();
+
+        System.out.print("Enter your budget: ");
+        double budget = scanner.nextDouble();
+        scanner.nextLine(); // Consume the newline character
+        
+        // Optionally, you can add more preferences like activities, accommodation type, etc.
+
+        // Fetch weather information using weather API
+        String weatherInfo = fetchWeatherInfo(destination, travelDates);
+        System.out.println("Weather forecast for " + destination + " during your travel dates:");
+        System.out.println(weatherInfo);
+
+        // Fetch map information using mapping service API
+        String mapInfo = fetchMapInfo(destination);
+        System.out.println("Map of " + destination + ":");
+        System.out.println(mapInfo);
+
+        // Calculate estimated expenses based on user preferences and destination
+        double estimatedExpenses = calculateEstimatedExpenses(destination);
+        System.out.println("Estimated expenses for your trip to " + destination + ": $" + estimatedExpenses);
+
+        // Generate and display the travel itinerary
+        displayTravelItinerary(destination, travelDates, estimatedExpenses);
+
+        scanner.close();
+    }
+
+    private static String fetchWeatherInfo(String destination, String travelDates) {
+        // Use weather API to fetch weather information for the specified destination and dates
+        // Return the weather forecast as a string
+        return "Weather forecast for " + destination + " during your travel dates...";
+    }
+
+    private static String fetchMapInfo(String destination) {
+        // Use mapping service API to fetch map information for the specified destination
+        // Return the map information as a string
+        return "Map of " + destination + "...";
+    }
+
+    private static double calculateEstimatedExpenses(String destination) {
+        // Implement logic to calculate estimated expenses based on destination and user preferences
+        // Return the estimated expenses as a double value
+        return 1000.0; // Placeholder value
+    }
+
+    private static void displayTravelItinerary(String destination, String travelDates, double estimatedExpenses) {
+        // Display the travel itinerary including destination, travel dates, weather, map, and estimated expenses
+        System.out.println("---- Travel Itinerary ----");
+        System.out.println("Destination: " + destination);
+        System.out.println("Travel Dates: " + travelDates);
+        System.out.println("Estimated Expenses: $" + estimatedExpenses);
+        System.out.println("----------------------------");
+    }
+}
